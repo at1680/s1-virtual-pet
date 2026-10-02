@@ -10,7 +10,7 @@ public class VirtualPetMain {
         vp.exercise();
         this.waitABeat(6000);
         String answer = this.askForInput("Do you want to feed me?");
-            if(answer.toLowerCase()=="no"){
+            if(answer.toLowerCase().equals("no")){
                 this.waitABeat(500);
                 vp.setEmotion("shocked");
                 this.waitABeat(2500);
@@ -23,26 +23,54 @@ public class VirtualPetMain {
                 int time = Integer.parseInt(this.askForInput("How long do you want to feed me for?"));
                 vp.feed();
                 this.waitABeat(time);
+                vp.setEmotion("love");
+                this.waitABeat(2000);
+                vp.setEmotion("normal");
             }
-        answer=this.askForInput("What should we do next?");
-            //say more exercise
-        this.waitABeat(1000);
-        vp.setEmotion("surprised");
-        this.waitABeat(2000);
-        this.askForInput("Are you serious");
-            //say yes
-        this.waitABeat(500);
-        vp.enraged();
-        this.waitABeat(1000);
-        vp.speech("I can't believe this");
-        this.waitABeat(3000);
-        vp.setEmotion("normal");
-        vp.speech("Ok let's go");
-        this.waitABeat(750);
-        vp.exercise();
-        this.waitABeat(6000);
-        vp.setEmotion("tired");
+        vp.speech("What should we do next?");
+        this.waitABeat(2500);
+        vp.speech("Hopefully not more exercise");
         this.waitABeat(1500);
+        answer=this.askForInput("More exercise?");
+            if (answer.toLowerCase().equals("yes")){
+                this.waitABeat(1000);
+                answer=this.askForInput("For how many minutes?");
+                if (Integer.parseInt(answer)>=10){
+                    vp.setEmotion("surprised");
+                    this.waitABeat(2000);
+                    answer=this.askForInput("Are you serious");
+                    if (answer.toLowerCase().equals("yes")){
+                        this.waitABeat(500);
+                        vp.enraged();
+                        this.waitABeat(1000);
+                        vp.speech("I can't believe this");
+                        this.waitABeat(3000);
+                        vp.setEmotion("normal");
+                        vp.speech("Ok let's go");
+                        this.waitABeat(750);
+                        vp.exercise();
+                        this.waitABeat(6000);
+                        vp.setEmotion("tired");
+                        this.waitABeat(1500);
+                    }
+                    else if (answer.toLowerCase().equals("no")){
+                        vp.setEmotion("relieved");
+                        this.waitABeat(1500);
+                        vp.speech("Thank goodness");
+                    }
+            }
+            else {
+                vp.setEmotion("relieved");
+                this.waitABeat(1500);
+                vp.speech("Thank goodness");
+                this.waitABeat(2000);
+            }
+            }
+            else {
+                vp.speech("Thank you!");
+                vp.setEmotion("happy");
+                this.waitABeat(3000);
+            }
         vp.setEmotion("starving");
         this.askForInput("Can I eat now please");
             //say no
