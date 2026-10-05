@@ -20,9 +20,9 @@ public class VirtualPetMain {
             else{
                 vp.setEmotion("joyful");
                 this.waitABeat(1000);
-                int time = Integer.parseInt(this.askForInput("How long do you want to feed me for?"));
+                int time = Integer.parseInt(this.askForInput("How many seconds do you want to feed me for?"));
                 vp.feed();
-                this.waitABeat(time);
+                this.waitABeat(time*1000);
                 vp.setEmotion("love");
                 this.waitABeat(2000);
                 vp.setEmotion("normal");
