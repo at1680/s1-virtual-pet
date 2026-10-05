@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.*;
 
 public class VirtualPetMain {
     VirtualPet vp = new VirtualPet();
@@ -27,6 +28,7 @@ public class VirtualPetMain {
                 this.waitABeat(2000);
                 vp.setEmotion("normal");
             }
+        this.waitABeat(1000);
         vp.speech("What should we do next?");
         this.waitABeat(2500);
         vp.speech("Hopefully not more exercise");
@@ -34,6 +36,8 @@ public class VirtualPetMain {
         answer=this.askForInput("More exercise?");
             if (answer.toLowerCase().equals("yes")){
                 this.waitABeat(1000);
+                vp.setEmotion("shocked");
+                this.waitABeat(2000);
                 answer=this.askForInput("For how many minutes?");
                 if (Integer.parseInt(answer)>=10){
                     vp.setEmotion("surprised");
@@ -46,6 +50,7 @@ public class VirtualPetMain {
                         vp.speech("I can't believe this");
                         this.waitABeat(3000);
                         vp.setEmotion("normal");
+                        this.waitABeat(750);
                         vp.speech("Ok let's go");
                         this.waitABeat(750);
                         vp.exercise();
@@ -57,12 +62,13 @@ public class VirtualPetMain {
                         vp.setEmotion("relieved");
                         this.waitABeat(1500);
                         vp.speech("Thank goodness");
+                        this.waitABeat(2000);
                     }
             }
             else {
                 vp.setEmotion("relieved");
                 this.waitABeat(1500);
-                vp.speech("Thank goodness");
+                vp.speech("Thank goodness it's not for that long");
                 this.waitABeat(2000);
             }
             }
@@ -71,24 +77,51 @@ public class VirtualPetMain {
                 vp.setEmotion("happy");
                 this.waitABeat(3000);
             }
+        vp.setEmotion("normal");
+        this.waitABeat(1000);
+        vp.speech("I'm getting a bit hungry");
         vp.setEmotion("starving");
-        this.askForInput("Can I eat now please");
-            //say no
-        this.waitABeat(1000);
-        vp.setEmotion("tired");
-        this.waitABeat(2500);
-        vp.speech("I'm starting to feel a bit sick");
-        vp.setEmotion("verysick");
-        this.waitABeat(3000);
-        vp.speech("I don't think I can hold on much longer");
-        this.waitABeat(4000);
-        vp.speech("I will be back");
-        this.waitABeat(2500);
-        vp.setEmotion("dead");
-        this.waitABeat(6000);
-        vp.setEmotion("ascension");
-        this.waitABeat(1000);
-        vp.speech("With my final ascension, you will now pay for your wrongdoings");
+        this.waitABeat(1500);
+        answer=this.askForInput("Can I eat now please");
+        if (answer.equals("no")){
+            this.waitABeat(1000);
+            vp.setEmotion("tired");
+            this.waitABeat(2500);
+            vp.speech("I'm starting to feel a bit sick");
+            vp.setEmotion("verysick");
+            this.waitABeat(3000);
+            answer=this.askForInput("Can I eat just a little");
+            if (answer.equals("no")){
+                this.waitABeat(1500);
+                vp.speech("I don't think I can hold on much longer");
+                this.waitABeat(4000);
+                vp.speech("I will be back");
+                this.waitABeat(2500);
+                vp.setEmotion("dead");
+                this.waitABeat(6000);
+                vp.setEmotion("ascension");
+                this.waitABeat(1000);
+                vp.speech("With my final ascension, you will now pay for your wrongdoings");
+            }
+            else if (answer.equals("yes")){
+                this.waitABeat(1500);
+                vp.setEmotion("relieved");
+                this.waitABeat(1500);
+                vp.setEmotion("happy");
+                this.waitABeat(1000);
+                vp.speech("Thank you");
+                this.waitABeat(2000);
+            }
+        }
+        else if (answer.equals("yes")){
+                this.waitABeat(1500);
+                vp.setEmotion("relieved");
+                this.waitABeat(1500);
+                vp.setEmotion("happy");
+                this.waitABeat(1000);
+                vp.speech("Thank you");
+                this.waitABeat(2000);
+            }
     }
 
     public void waitABeat(int ms){
